@@ -1,6 +1,6 @@
 // Paste the Inbound Webhook URL from your GoHighLevel workflow trigger here.
 // Looks like: https://services.leadconnectorhq.com/hooks/XXXX/webhook-trigger/YYYY
-const GHL_WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/4QsLYjGwLmkwPq9qWOs2/webhook-trigger/dc095b80-83c7-4678-8fb8-5286156aeccf";
+const GHL_WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/4QsLYjGwLmkwPq9qWOs2/webhook-trigger/699bdcba-b0fd-469a-978d-d64f55591ca7";
 
 document.querySelectorAll("form.signup").forEach((form) => {
   form.addEventListener("submit", async (e) => {
