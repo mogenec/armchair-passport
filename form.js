@@ -24,7 +24,7 @@ document.querySelectorAll("form.signup").forEach((form) => {
     button.textContent = "Stamping your passport…";
 
     const params = new URLSearchParams(window.location.search);
-    const payload = new URLSearchParams({
+    const payload = JSON.stringify({
       first_name: firstName,
       email: email,
       source: "Armchair Passport landing page",
@@ -36,9 +36,12 @@ document.querySelectorAll("form.signup").forEach((form) => {
 
     try {
       if (GHL_WEBHOOK_URL) {
-        // no-cors + form encoding: the webhook doesn't send CORS headers, so the
-        // response is opaque. A network failure still throws and is caught below.
-        await fetch(GHL_WEBHOOK_URL, { method: "POST", mode: "no-cors", body: payload });
+        const res = await fetch(GHL_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: payload,
+        });
+        if (!res.ok) throw new Error("Webhook returned " + res.status);
       } else {
         console.warn("GHL_WEBHOOK_URL is not set; signup was not sent.");
       }
